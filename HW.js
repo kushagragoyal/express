@@ -1,15 +1,9 @@
-const express = require('express')
+const http = require('http') 
 
-const app = express()
+const routes = require('./routes')
 
-app.use((req, res, next) => {
-    console.log('In the middleware!')
-    next()
-})
+// const server = http.createServer(routes)                 //Work fine with 1st method
 
-app.use((req, res, next) => {
-    console.log('In anathor middleware!')
-    res.send(`<h1>Hello from express</h1>`)
-})
-
-app.listen(4000)
+console.log(routes.someText)                                //Work fine with 2nd and 3rd method
+const server = http.createServer(routes.handler) 
+server.listen(4000)
